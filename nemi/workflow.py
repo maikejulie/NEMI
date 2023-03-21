@@ -232,6 +232,8 @@ class NEMI(SingleNemi):
 
             self.nemi_pack = nemi_pack
 
+        self.assess_overlap()
+
     def plot(self, to_plot=None, plot_ensemble=False, **kwargs):
 
         if plot_ensemble:
@@ -268,7 +270,7 @@ class NEMI(SingleNemi):
 
         # if not pre-set, set max number of clusters to total number of clusters in the base
         if max_clusters is None:
-            max_clusters = num_clusters + 1
+            max_clusters = num_clusters
 
         sortedOverlap=np.zeros((len(compare_ids)+1, max_clusters, base_labels.shape[0]))*np.nan
 
