@@ -258,9 +258,7 @@ class NEMI(SingleNemi):
 
         # list of ensemble members we are comparing to the base
         compare_ids = [i for i in range(len(self.nemi_pack))]
-        print(compare_ids)
         compare_ids.pop(base_id)
-        print('comparing to ids:', compare_ids)        
 
         # identify clusters from the base ensemble member
         base_labels = self.nemi_pack[base_id].clusters
@@ -280,7 +278,6 @@ class NEMI(SingleNemi):
         # compile sorted cluster data
         # TODO: add assert statement to make sure that the clusters have been sorted?
         dataVector=[nemi.clusters for id, nemi in enumerate(self.nemi_pack) if id != base_id]
-        print('length of data vector:', len(dataVector))
 
         # loop over ensemble members, not including the base member
         for compare_cnt, compare_id in enumerate(compare_ids):
