@@ -22,7 +22,7 @@ quantifies if a data point within the original data belongs to a certain cluster
 agglomerative methodology and sorting in the described case study allows a filtering, or nesting, of clusters to tailor to a desired application.
 
 
-.. image:: https://github.com/maikejulie/NEMI/blob/docs/docs/images/NEMI_sketch.png
+.. image:: https://github.com/maikejulie/NEMI/raw/3bb2d5b090069e16685ae3d87d74856b5ac49760/docs/images/NEMI_sketch.png
     :width: 600px
     :alt: NEMI workflow
     :align: center
@@ -47,7 +47,9 @@ What is new with NEMI
 NEMI is a generalisation of the methodology in `Sonnewald et al. (2020) <https://www.science.org/doi/10.1126/sciadv.aay4740>`__ that targeted plankton ecosystems, 
 in that is is designed to scale to larger datasets and is agnostic to the source of the data. Scaling is one of the true bottlenecks in data mining for scientific applications. NEMI is generalised to work with any data, 
 where the particular example application used here is geospatial data. I have used an explicitly hierarchical approach, making NEMI less parametric (fewer parameters to tune and less danger of noise interference) and 
-intuitively useful both for global (for example the whole Earth in the present example) or more local applications (for example a basin or more regional assessment). Another novelty in NEMI is the lack of a fixed field-specific benchmark criteria (used in \cite{Sonnewald2020}), where I have generalised so a field agnostic option is available. Lastly, NEMI invites the use of a range of uncertainty quantification options in the final cluster evaluation. 
+intuitively useful both for global (for example the whole Earth in the present example) or more local applications (for example a basin or more regional assessment). Another novelty in NEMI is the lack of a fixed 
+field-specific benchmark criteria (used in \cite{Sonnewald2020}), where I have generalised so a field agnostic option is available. 
+Lastly, NEMI invites the use of a range of uncertainty quantification options in the final cluster evaluation. 
 
 Requirements
 ============
