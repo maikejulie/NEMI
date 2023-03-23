@@ -24,7 +24,7 @@ agglomerative methodology and sorting in the described case study allows a filte
 
 .. image:: ../../images/NEMI_sketch.png
     :width: 600px
-    :alt: PyMC logo
+    :alt: NEMI workflow
     :align: center
 
 Full contents
