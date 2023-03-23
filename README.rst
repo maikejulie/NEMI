@@ -65,7 +65,7 @@ We also recommend installing in a virtual environment. For more information see 
 Quick start guide
 =================
 
-Given an array X with dimensions (n_samples, n_features), these Python commands will run the NEMI workflow and bring up a plot::
+Install with ``pip install nemi-learn``. Given an array X with dimensions (n_samples, n_features), these Python commands will run the NEMI workflow and bring up a plot::
 
     from nemi import NEMI
     nemi = NEMI()
