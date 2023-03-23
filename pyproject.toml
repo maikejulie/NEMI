@@ -23,3 +23,7 @@ classifiers = [
 
 [tool.setuptools]
 packages = ["nemi"]
+
+[project.urls]
+"Homepage" = "https://github.com/maikejulie/NEMI"
+"Bug Tracker" = "https://github.com/maikejulie/NEMI/issues"
