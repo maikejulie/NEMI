@@ -1,9 +1,10 @@
-====
-NEMI
-====
+.. NEMI documentation master file, created by
+   sphinx-quickstart on Thu Mar 23 09:36:34 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-About NEMI
-==========
+Welcome to NEMI
+================================
 
 Native Emergent Manifold Interrogation (NEMI) is a workflow to determine regions of interest in large or highly complex and nonlinear data. 
 
@@ -21,38 +22,23 @@ quantifies if a data point within the original data belongs to a certain cluster
 agglomerative methodology and sorting in the described case study allows a filtering, or nesting, of clusters to tailor to a desired application.
 
 
-.. image:: https://github.com/maikejulie/NEMI/blob/docs/docs/images/NEMI_sketch.png
+.. image:: ../../images/NEMI_sketch.png
     :width: 600px
     :alt: NEMI workflow
     :align: center
 
-Requirements
-============
-Python 3.7 or greater
+Full contents
+=============
 
-We also recommend installing in a virtual environment. For more information see documentation for e.g., `Mamba <https://mamba.readthedocs.io/en/latest/>`__.
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-Quick start guide
-=================
 
-Given an array X with dimensions (n_samples, n_features), these Python commands will run the NEMI workflow and bring up a plot::
 
-    from nemi import NEMI
-    nemi = NEMI()
-    nemi.run()
-    nemi.plot('clusters')
+Indices and tables
+==================
 
-Installation from source
-========================
-
-If you wish to install from the source code follow the steps below. This will allow you to e.g., personalize
-the embedding or clustering steps in the pipeline.
-
-1. Clone the repository
-
-2. (optional) Create and activate your virtual environment
-
-3. Navigate to the root of the repository and install::
-
-    pip install -e .
-
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
