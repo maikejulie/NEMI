@@ -9,6 +9,16 @@ The Native Emergent Manifold Interrogation (NEMI; submitted JAMES) is a method t
 
 Citation: Sonnewald, M., submitted. A hierarchical ensemble manifold methodology for new knowledge on spatial data: An application to ocean physics. Journal of Advances in Modeling Earth Systems.
 
+.. image:: https://img.shields.io/badge/GitHub-maikejulie%2FNEMI-blue.svg?style=flat
+    :target: https://github.com/maikejulie/NEMI   
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.7764719.svg
+    :target: https://doi.org/10.5281/zenodo.7764719
+.. image:: https://img.shields.io/github/license/maikejulie/NEMI
+    :alt: GitHub
+.. image:: https://badge.fury.io/py/nemi-learn.svg
+    :target: https://badge.fury.io/py/nemi-learn   
+
+   
 Short description/abstract:
 ---------------------------
 
