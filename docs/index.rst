@@ -21,6 +21,12 @@ are sorted within individual ensemble members and co-located across the set. A m
 quantifies if a data point within the original data belongs to a certain cluster. NEMI is clustering method agnostic, but the use of an 
 agglomerative methodology and sorting in the described case study allows a filtering, or nesting, of clusters to tailor to a desired application.
 
+
+.. image:: ../../images/NEMI_sketch.png
+    :width: 600px
+    :alt: PyMC logo
+    :align: center
+
 Full contents
 =============
 
