@@ -3,11 +3,9 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nemi"
+name = "nemi-learn"
 authors = [
-    {name = "Maike Sonnewald", email = "maikes@princeton.edu"},
-    {name = "Katherine Rosenfeld"}
-]
+    {name = "Maike Sonnewald", email = "maikes@princeton.edu"}]
 description = "Code to accompany paper"
 readme = "README.md"
 version = "1.0.0"
