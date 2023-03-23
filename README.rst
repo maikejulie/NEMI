@@ -5,7 +5,7 @@ NEMI
 About NEMI
 ==========
 
-Native Emergent Manifold Interrogation (NEMI) is a workflow to determine regions of interest in large or highly complex and nonlinear data. 
+The Native Emergent Manifold Interrogation (NEMI) is a workflow to determine regions of interest in large or highly complex and nonlinear data. 
 
 Algorithms to determine regions of interest in large or highly complex and nonlinear data is becoming increasingly important. 
 Novel methodologies from computer science and dynamical systems are well placed as analysis tools, but are underdeveloped for 
@@ -26,7 +26,7 @@ agglomerative methodology and sorting in the described case study allows a filte
     :alt: NEMI workflow
     :align: center
 
-Figure: Sketch of NEMI workflow. Part 1 (top rwo) illustrates moving from the data in its rew form, through initial symbolic renditioning, manifold transformation and clustering. Part 2 (bottom row) shows the ensembling, agglomerative utility ranking and native (field specific) utility ranking within each ensemble member. Finally, the cluster for each location is determined looking across the ensemble. (Top left image of model adapted from encyclopedie-environnement.org).
+Figure: Sketch of NEMI workflow. Part 1 (top row) illustrates moving from the data in its rew form, through initial symbolic renditioning, manifold transformation and clustering. Part 2 (bottom row) shows the ensembling, agglomerative utility ranking and native (field specific) utility ranking within each ensemble member. Finally, the cluster for each location is determined looking across the ensemble. (Top left image of model adapted from encyclopedie-environnement.org).
 
 Requirements
 ============
