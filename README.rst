@@ -7,6 +7,11 @@ About NEMI
 
 The Native Emergent Manifold Interrogation (NEMI; submitted JAMES) is a method to determine regions of interest in large or highly complex and nonlinear data. 
 
+Citation: Sonnewald, M., submitted. A hierarchical ensemble manifold methodology for new knowledge on spatial data: An application to ocean physics. Journal of Advances in Modeling Earth Systems.
+
+Short description/abstract:
+---------------------------
+
 Algorithms to determine regions of interest in large or highly complex and nonlinear data is becoming increasingly important. 
 Novel methodologies from computer science and dynamical systems are well placed as analysis tools, but are underdeveloped for 
 applications within the Earth sciences, and many produce misleading results.  I present a novel and general workflow, the Native Emergent Manifold Interrogation (NEMI) method, which is easy to use and widely applicable. 
@@ -42,8 +47,8 @@ areas within the data. In the paper, I stresses the underlying philosophy and ap
 facilitate understanding of data mining; a tool to gain new knowledge.
 
 
-What is new with NEMI
----------------------
+What is new with NEMI:
+----------------------
 NEMI is a generalisation of the methodology in `Sonnewald et al. (2020) <https://www.science.org/doi/10.1126/sciadv.aay4740>`__ that targeted plankton ecosystems, 
 in that is is designed to scale to larger datasets and is agnostic to the source of the data. Scaling is one of the true bottlenecks in data mining for scientific applications. NEMI is generalised to work with any data, 
 where the particular example application used here is geospatial data. I have used an explicitly hierarchical approach, making NEMI less parametric (fewer parameters to tune and less danger of noise interference) and 
