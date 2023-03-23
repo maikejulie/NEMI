@@ -71,7 +71,7 @@ Install with ``pip install nemi-learn``. Given an array X with dimensions (n_sam
 
     from nemi import NEMI
     nemi = NEMI()
-    nemi.run()
+    nemi.run(X)
     nemi.plot('clusters')
 
 Installation from source
