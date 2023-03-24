@@ -36,7 +36,7 @@ agglomerative methodology and sorting in the described case study allows a filte
 
 Figure: Sketch of NEMI workflow. Part 1 (top row) illustrates moving from the data in its rew form, through initial symbolic renditioning, manifold transformation and clustering. Part 2 (bottom row) shows the ensembling, agglomerative utility ranking and native (field specific) utility ranking within each ensemble member. Finally, the cluster for each location is determined looking across the ensemble. (Top left image of model adapted from encyclopedie-environnement.org).
 
-Plain Language Summary:
+Plain language summary:
 -----------------------
 Within the Earth sciences data is increasingly becoming unmanageably large, noisy and nonlinear. 
 Most methods that are commonly in use employ highly restrictive assumptions regarding the underlying 
