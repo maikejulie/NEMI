@@ -5,7 +5,7 @@ NEMI
 About NEMI
 ==========
 
-The Native Emergent Manifold Interrogation (NEMI; submitted JAMES) is a method to determine regions of interest in large or highly complex and nonlinear data. 
+The **N**ative **E**mergent **M**anifold **I**nterrogation (NEMI; submitted JAMES) is a method to determine regions of interest in large or highly complex and nonlinear data. 
 
 Citation: Sonnewald, M., submitted. A hierarchical ensemble manifold methodology for new knowledge on spatial data: An application to ocean physics. Journal of Advances in Modeling Earth Systems.
 
