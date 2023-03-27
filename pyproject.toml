@@ -21,6 +21,9 @@ classifiers = [
     "Intended Audience :: Science/Research",
 ]
 
+[project.optional-dependencies]
+full = ["pytest"]
+
 [tool.setuptools]
 packages = ["nemi"]
 

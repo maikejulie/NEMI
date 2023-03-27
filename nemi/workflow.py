@@ -218,6 +218,7 @@ class NEMI(SingleNemi):
 
         if n == 1:
             super().run(X)
+            return
         else:
             # initialize the pack
             nemi_pack = []
