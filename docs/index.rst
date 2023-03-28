@@ -6,6 +6,7 @@
 Welcome to NEMI
 ================================
 
+
 Native Emergent Manifold Interrogation (NEMI) is a method to determine regions of interest in large or highly complex and nonlinear data. 
 
 Algorithms to determine regions of interest in large or highly complex and nonlinear data is becoming increasingly important. 
