@@ -88,6 +88,10 @@ the embedding or clustering steps in the pipeline.
 
     pip install -e .
 
+   Alternatively, you can opt for a full installation to run tests and examples::
+
+    pip install -e .[full]
+
 .. |Github| image:: https://img.shields.io/badge/GitHub-maikejulie%2FNEMI-blue.svg?style=flat
    :target: https://github.com/maikejulie/NEMI   
 .. |License| image:: https://img.shields.io/github/license/maikejulie/NEMI
