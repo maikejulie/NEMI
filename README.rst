@@ -100,5 +100,5 @@ the embedding or clustering steps in the pipeline.
    :target: https://badge.fury.io/py/nemi-learn
 .. |DOIzenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.7764719.svg
    :target: https://doi.org/10.5281/zenodo.7764719
-.. |Tests| image:: https://github.com/maikejulie/NEMI/workflow/Test/badge.svg
+.. |Tests| image:: https://github.com/maikejulie/NEMI/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/maikejulie/NEMI/actions?query=workflow%3ATest   
