@@ -7,7 +7,7 @@ About NEMI
 
 The \ **N**\ative \ **E**\mergent \ **M**\anifold \ **I**\nterrogation (NEMI; submitted JAMES) is a method to determine regions of interest in large or highly complex and nonlinear data. 
 
-Citation: Sonnewald, M., in review. A hierarchical ensemble manifold methodology for new knowledge on spatial data: An application to ocean physics. Journal of Advances in Modeling Earth Systems.
+Citation: Sonnewald, M., in review. A hierarchical ensemble manifold methodology for new knowledge on spatial data: An application to ocean physics. Journal of Advances in Modeling Earth Systems. `Available: ESSOAr <https://www.authorea.com/users/548798/articles/631607-a-hierarchical-ensemble-manifold-methodology-for-new-knowledge-on-spatial-data-an-application-to-ocean-physics>`__.
 
 |Github| |License| |Tests| |pypi| |DOIzenodo|
 
