@@ -103,7 +103,7 @@ class SingleNemi():
             Identified clusters
         """
 
-        return self.__clustering_algo(**self.params['clustering_dict'])(self.X)
+        return self.__clustering_algo(**self.params['clustering_dict'])(self.embedding)
 
 
     def sort_clusters(self, clusters):
