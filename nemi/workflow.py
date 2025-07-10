@@ -1,4 +1,3 @@
-
 import umap
 import pickle
 import copy
@@ -7,15 +6,16 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import AgglomerativeClustering, DBSCAN
 from sklearn.neighbors import kneighbors_graph
+
 # import sciris as sc
 
 __all__ = ['NEMI', 'SingleNemi']
 
 default_params = dict(
-    embedding_dict = dict(min_dist=0.0, n_components=3, n_neighbors=20),
-    clustering_dict = dict(linkage='ward',  n_clusters=30, n_neighbors=40)
+    embedding_dict=dict(min_dist=0.0, n_components=3, n_neighbors=20),
+    clustering_dict=dict(method='agglomerative', linkage='ward', n_clusters=30, n_neighbors=40)
 )
 
 
@@ -41,7 +41,7 @@ class SingleNemi():
         self.X = None
 
         return
-    
+
     def run(self, X, save_steps=True):
         """ Run a single instance of the NEMI pipeline
 
@@ -93,7 +93,6 @@ class SingleNemi():
         # run embedding
         self.embedding = self.__embedding_algo(**self.params['embedding_dict'])(self.X)
 
-
     def predict_clusters(self):
         """ Run the clustering algorithm on the embedding
 
@@ -103,8 +102,7 @@ class SingleNemi():
             Identified clusters
         """
 
-        return self.__clustering_algo(**self.params['clustering_dict'])(self.X)
-
+        return self.__clustering_algo(**self.params['clustering_dict'])(self.embedding)
 
     def sort_clusters(self, clusters):
         """ Updates cluster labels 0,1,...,k so that each cluster is of descending size.
@@ -115,13 +113,16 @@ class SingleNemi():
         Returns:
             An array with the new labels
         """
+        # increase all DBSCAN labels by 1 to ensure code compatibility (noise cluster will be 0 instead of -1)
+        if self.params["clustering_dict"]["method"].lower() == "dbscan":
+            clusters = clusters + 1
 
         # number of clusters (also the same as the label name in the agglomerated cluster dict)
-        n_clusters = np.max(clusters)+1
+        n_clusters = np.max(clusters) + 1
         #  create a histogram of the different clusters
-        hist,_ = np.histogram(clusters, np.arange(n_clusters+1))
+        hist, _ = np.histogram(clusters, np.arange(n_clusters + 1))
         # clusters sorted by size (largest to smallest)
-        sorted_clusters= np.argsort(hist)[::-1]
+        sorted_clusters = np.argsort(hist)[::-1]
         # assign new labels where labels 0,...,k go in decreasing member size 
         new_labels = np.empty(clusters.shape)
         new_labels.fill(np.nan)
@@ -129,7 +130,7 @@ class SingleNemi():
             new_labels[clusters == old_label] = new_label
 
         return new_labels
-        
+
     def save(self, filename):
         with open(filename, 'wb') as fid:
             pickle.dump(self, fid)
@@ -177,29 +178,43 @@ class SingleNemi():
         for k, col in zip(unique_labels, colors):
             class_member_mask = (labels == k)
             xy = data[class_member_mask, :]
-            ax.scatter(*xy[::subsample].T, c=np.array(col).reshape((1,-1)), s=s, alpha=1, zorder=4)      
-
+            ax.scatter(*xy[::subsample].T, c=np.array(col).reshape((1, -1)), s=s, alpha=1, zorder=4)
 
     def __embedding_algo(self, **kwargs):
         return umap.UMAP(**kwargs).fit_transform
 
     def __clustering_algo(self, **kwargs):
-        """ Clustering step
+        """ Clustering step. Uses either AgglomerativeClustering or DBSCAN based on 'kwargs['method']. Defaults to
+        'agglomerative'.
 
         Args:
-            n_neighbors (int): Number of neighbors for each sample of the kneighbors_graph. Defaults to 40.
-                   
+            method (str): Clustering method. Choose from "agglomerative" and "dbscan". Default is "agglomerative". For
+            agglomerative clustering, specify linkage and n_clusters as well as n_neighbors. For DBSCAN, consider
+            custom settings especially for eps and min_samples.
+            n_neighbors (int): For agglomerative. Number of neighbors for each sample of the kneighbors_graph, defaults
+            to 40.
         """
-        # Create a graph capturing local connectivity. Larger number of neighbors
-        # will give more homogeneous clusters to the cost of computation
-        # time. A very large number of neighbors gives more evenly distributed
-        # cluster sizes, but may not impose the local manifold structure of
-        # the data
-        knn_graph = kneighbors_graph(self.embedding, kwargs['n_neighbors'], include_self=False)
-        model = AgglomerativeClustering(linkage=kwargs['linkage'],
+        method = kwargs.get("method", "agglomerative").lower()
+
+        if method == "agglomerative":
+            # Create a graph capturing local connectivity. Larger number of neighbors
+            # will give more homogeneous clusters to the cost of computation
+            # time. A very large number of neighbors gives more evenly distributed
+            # cluster sizes, but may not impose the local manifold structure of
+            # the data
+            knn_graph = kneighbors_graph(self.embedding, kwargs['n_neighbors'], include_self=False)
+            model = AgglomerativeClustering(linkage=kwargs['linkage'],
                                             connectivity=knn_graph,
                                             n_clusters=kwargs['n_clusters'])
-        return model.fit_predict                          
+        elif method == "dbscan":
+            dbscan_args = {k: v for k, v in kwargs.items() if k != "method"}  # get all arguments except 'method'
+            model = DBSCAN(**dbscan_args)
+
+        else:
+            raise ValueError(f"Unsupported clustering method: {method}. Please choose from "
+                             f"['agglomerative', 'dbscan'].")
+
+        return model.fit_predict
 
 
 class NEMI(SingleNemi):
@@ -239,7 +254,7 @@ class NEMI(SingleNemi):
                 # create nemi instance
                 nemi = SingleNemi(params=self.params)
                 # run single instance
-                nemi.run(X)        
+                nemi.run(X)
                 # add to the pack
                 nemi_pack.append(nemi)
 
@@ -256,7 +271,7 @@ class NEMI(SingleNemi):
         if to_plot == 'clusters':
             super().plot('clusters')
 
-    def assess_overlap(self, base_id:int =0, max_clusters=None, **kwargs):
+    def assess_overlap(self, base_id: int = 0, max_clusters=None, **kwargs):
         """ Assess the overlap between the clusters.
 
         Args:
@@ -280,59 +295,59 @@ class NEMI(SingleNemi):
         if max_clusters is None:
             max_clusters = num_clusters
 
-        sortedOverlap=np.zeros((len(compare_ids)+1, max_clusters, base_labels.shape[0]))*np.nan
+        sortedOverlap = np.zeros((len(compare_ids) + 1, max_clusters, base_labels.shape[0])) * np.nan
 
         print(num_clusters, max_clusters)
-        summaryStats=np.zeros((num_clusters, max_clusters))
+        summaryStats = np.zeros((num_clusters, max_clusters))
 
         # compile sorted cluster data
         # TODO: add assert statement to make sure that the clusters have been sorted?
-        dataVector=[nemi.clusters for id, nemi in enumerate(self.nemi_pack) if id != base_id]
+        dataVector = [nemi.clusters for id, nemi in enumerate(self.nemi_pack) if id != base_id]
 
         # loop over ensemble members, not including the base member
         for compare_cnt, compare_id in enumerate(compare_ids):
             # grab clusters of ensemble member
-            compare_labels= dataVector[compare_cnt]
+            compare_labels = dataVector[compare_cnt]
 
             # go through each cluster in the base and assess the percentage overlap
             # for every cluster in the ensemble member (overlap / total coverage area) 
-            for c1 in range(max_clusters): 
+            for c1 in range(max_clusters):
                 # Initialize dummy array to mark location of the cluster for the base member
                 data1_M = np.zeros(base_labels.shape, dtype=int)
                 # mark where the considered cluster is in the member that is being used as the baseline
-                data1_M[np.where(c1==base_labels)] = 1 
+                data1_M[np.where(c1 == base_labels)] = 1
                 # # Count numer of entries [Why?] 
-                summaryStats[0, c1]=np.sum(data1_M) 
+                summaryStats[0, c1] = np.sum(data1_M)
 
                 # go through each cluster
                 # k = 0
                 for c2 in range(num_clusters):
                     # Initialize dummy array to mark where the cluster is in the comparison member
-                    data2_M = np.zeros(base_labels.shape, dtype=int) 
+                    data2_M = np.zeros(base_labels.shape, dtype=int)
 
                     # mark where the considered cluster is in the member that is being used as the comparison
-                    data2_M[np.where(c2==compare_labels)] = 1    
+                    data2_M[np.where(c2 == compare_labels)] = 1
 
                     # Sum of flags where the two datasets of that cluster are both present
-                    num_overlap=np.sum(data1_M*data2_M)       
+                    num_overlap = np.sum(data1_M * data2_M)
 
-                    #Sum of where they overlap
-                    num_total=np.sum(data1_M | data2_M)       
+                    # Sum of where they overlap
+                    num_total = np.sum(data1_M | data2_M)
 
-                    #Collect the number that is largest of k and the num_overlap/num_total
+                    # Collect the number that is largest of k and the num_overlap/num_total
                     # k = max(k, num_overlap / num_total)       
-                    summaryStats[c2, c1]=(num_overlap / num_total)*100 # Add percentage of coverage
+                    summaryStats[c2, c1] = (num_overlap / num_total) * 100  # Add percentage of coverage
 
-                #Filled in 'summaryStatistics' matrix results of percentage overlaps
+                # Filled in 'summaryStatistics' matrix results of percentage overlaps
 
-            usedClusters = set() # Used to mak sure clusters don't get selected twice
-            #Clusters are already sorted by size
-            
-            sortedOverlapForOneCluster=np.zeros(base_labels.shape, dtype=int)*np.nan
+            usedClusters = set()  # Used to mak sure clusters don't get selected twice
+            # Clusters are already sorted by size
+
+            sortedOverlapForOneCluster = np.zeros(base_labels.shape, dtype=int) * np.nan
             # go through clusters from (biggest to smallest since they are sorted)
-            for c1 in range(max_clusters):  
-                sortedOverlapForOneCluster=np.zeros(base_labels.shape, dtype=int)*np.nan
-                #print('cluster number ', c1, summaryStats.shape, summaryStats[1:,c1-1].shape)
+            for c1 in range(max_clusters):
+                sortedOverlapForOneCluster = np.zeros(base_labels.shape, dtype=int) * np.nan
+                # print('cluster number ', c1, summaryStats.shape, summaryStats[1:,c1-1].shape)
 
                 # find biggest cluster in first column, making sure it has not been used
                 sortedClusters = np.argsort(summaryStats[:, c1])[::-1]
@@ -345,18 +360,18 @@ class NEMI(SingleNemi):
                 data2_M = np.zeros(base_labels.shape, dtype=int)
 
                 # Select which country is being assessed
-                data2_M[np.where(biggestCluster == compare_labels)]=1 # Select cluster being assessed
+                data2_M[np.where(biggestCluster == compare_labels)] = 1  # Select cluster being assessed
 
-                sortedOverlapForOneCluster[np.where(data2_M==1)]=1
+                sortedOverlapForOneCluster[np.where(data2_M == 1)] = 1
                 sortedOverlap[compare_id, c1, :] = sortedOverlapForOneCluster
 
         # fill in the base entry in the sorted overlap
-        for c1 in range(max_clusters):  
+        for c1 in range(max_clusters):
             sortedOverlap[base_id, c1, :] = 1 * (base_labels == c1)
 
         # majority vote
-        aggOverlaps = np.nansum(sortedOverlap,axis=0)
-        voteOverlaps = np.argmax(aggOverlaps,axis=0)
+        aggOverlaps = np.nansum(sortedOverlap, axis=0)
+        voteOverlaps = np.argmax(aggOverlaps, axis=0)
 
         # save clusters estimated from the ensemble
         self.clusters = voteOverlaps
