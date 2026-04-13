@@ -7,24 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          pip install -r docs/requirements.txt
-      - name: Install source
+          python -m pip install --upgrade pip
+          pip install -e ".[docs]"
+      - name: MkDocs build
         run: |
-          pip install -e .
-      - name: API build
-        run: |
-          sphinx-apidoc -f -e -M -o docs nemi
-      - name: Sphinx build
-        run: |
-          sphinx-build docs _build
+          mkdocs build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/
+          publish_dir: site
           force_orphan: true
