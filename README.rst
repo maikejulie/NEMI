@@ -95,7 +95,7 @@ the embedding or clustering steps in the pipeline.
 Documentation
 =============
 
-To build and preview the project documentation (MkDocs Material)::
+The published site is organized for different needs: a **tutorial** (first analysis), **how-to** guides (install, build docs), **explanation** (about the method), and **API reference**. To build and preview locally (MkDocs Material)::
 
     pip install -e .[docs]
     mkdocs serve

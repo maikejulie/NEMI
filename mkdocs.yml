@@ -33,7 +33,7 @@ nav:
   - Home: index.md
   - About: about.md
   - Installation: installation.md
-  - Quickstart: quickstart.md
+  - "Tutorial: First analysis": quickstart.md
   - API reference: reference.md
 
 markdown_extensions:

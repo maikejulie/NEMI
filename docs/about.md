@@ -1,18 +1,13 @@
-# About
+# About NEMI
 
-Algorithms to determine regions of interest in large or highly complex and nonlinear data is becoming increasingly important.
-Novel methodologies from computer science and dynamical systems are well placed as analysis tools, but are underdeveloped for
-applications within the Earth sciences, and many produce misleading results. NEMI is able to quantify and leverage the highly
-complex latent space presented by noisy, nonlinear and unbalanced data common in the Earth sciences.
-NEMI uses dynamical systems and probability theory to strengthen associations, simplifying covariance structures,
-within the data with a manifold, or a Riemannian, methodology that uses domain specific charting of the underlying space.
-On the manifold, an agglomerative clustering methodology is applied to isolate the now observable areas of interest. The
-construction of the manifold introduces a stochastic component which is beneficial to the analysis as it enables latent space
-regularization. NEMI uses an ensemble methodology to quantify the sensitivity of the results noise. The areas of interest, or clusters,
-are sorted within individual ensemble members and co-located across the set. A metric such as a majority vote, entropy, or similar
-quantifies if a data point within the original data belongs to a certain cluster. NEMI is clustering method agnostic, but the use of an
-agglomerative methodology and sorting in the described case study allows a filtering, or nesting, of clusters to tailor to a desired application.
+This page is **explanation**: it describes how NEMI works and why it is structured that way—not step-by-step tasks. For a hands-on first run, use the [tutorial](quickstart.md). To install the package, see [Installation](installation.md).
+
+---
+
+Algorithms for finding regions of interest in large, highly nonlinear data are increasingly important. Methods from computer science and dynamical systems are promising, but many are underdeveloped for Earth-science applications or can mislead when assumptions are wrong. NEMI is designed to **quantify and use** the complex latent structure in noisy, nonlinear, imbalanced data typical of those domains.
+
+NEMI uses dynamical systems and probability to **strengthen associations** and **simplify covariance structure** via a manifold (Riemannian) view, with **domain-specific charting** of the underlying space. On the manifold, **agglomerative clustering** isolates candidate regions of interest. The manifold construction introduces **stochasticity**, which helps **regularize** the latent representation. An **ensemble** of runs captures sensitivity to noise; clusters are aligned across members, and a rule such as **majority vote** or **entropy** decides membership in the combined result. The implementation is **clustering-algorithm agnostic**; the reference case uses agglomerative clustering and sorted clusters so results can be **nested or filtered** for the application.
 
 <img src="https://github.com/maikejulie/NEMI/raw/3bb2d5b090069e16685ae3d87d74856b5ac49760/docs/images/NEMI_sketch.png" width="600" alt="Sketch of NEMI workflow" />
 
-**Figure:** Sketch of NEMI workflow. Part 1 (top row) illustrates moving from the data in its raw form, through initial symbolic renditioning, manifold transformation and clustering. Part 2 (bottom row) shows the ensembling, agglomerative utility ranking and native (field specific) utility ranking within each ensemble member. Finally, the cluster for each location is determined looking across the ensemble. (Top left image of model adapted from encyclopedie-environnement.org).
+**Figure:** Sketch of the NEMI workflow. Part 1 (top row): raw data → symbolic representation → manifold embedding → clustering. Part 2 (bottom row): ensembling, agglomerative utility ranking, and field-specific utility ranking per ensemble member; then cluster assignment by comparing across the ensemble. (Top-left panel adapted from encyclopedie-environnement.org.)
