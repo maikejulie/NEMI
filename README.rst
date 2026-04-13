@@ -60,7 +60,7 @@ Lastly, NEMI invites the use of a range of uncertainty quantification options in
 
 Requirements
 ============
-Python 3.7 or greater
+Python 3.9 or greater
 
 We also recommend installing in a virtual environment. For more information see documentation for e.g., `Mamba <https://mamba.readthedocs.io/en/latest/>`__.
 
@@ -91,6 +91,16 @@ the embedding or clustering steps in the pipeline.
    Alternatively, you can opt for a full installation to run tests and examples::
 
     pip install -e .[full]
+
+Documentation
+=============
+
+To build and preview the project documentation (MkDocs Material)::
+
+    pip install -e .[docs]
+    mkdocs serve
+
+Run ``mkdocs build`` to write the static site to the ``site/`` directory.
 
 .. |Github| image:: https://img.shields.io/badge/GitHub-maikejulie%2FNEMI-blue.svg?style=flat
    :target: https://github.com/maikejulie/NEMI   
