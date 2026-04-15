@@ -8,8 +8,8 @@ The docs follow the [Diataxis](https://diataxis.fr/) idea: separate **learning**
 
 | You want to… | Start here |
 |--------------|------------|
-| **Learn** by doing a minimal, end-to-end run | [Tutorial: first analysis](quickstart.md) |
 | **Do** something specific (install, build docs) | [Installation](installation.md) |
+| **Learn** by doing a minimal, end-to-end run | [Tutorial: first analysis](quickstart.md) |
 | **Understand** the method and workflow | [About NEMI](about.md) |
 | **Look up** classes, functions, and parameters | [API reference](reference.md) |
 
