@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "diataxis-documentation": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "computedHash": "f86a3fd1f361a8f63e39c73da24cb99a9ea958fbcd8eae34705d8089fc825561"
+    }
+  }
+}

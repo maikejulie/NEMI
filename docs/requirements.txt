@@ -1,9 +1,0 @@
-pytest
-sphinx-rtd-theme
-sphinx
-plantweb
-ipykernel
-nbsphinx
-pandoc
-pypandoc
-
