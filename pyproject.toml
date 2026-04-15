@@ -7,7 +7,7 @@ name = "nemi-learn"
 authors = [
     {name = "Maike Sonnewald", email = "maikes@princeton.edu"}]
 description = "Code to accompany paper"
-readme = "README.rst"
+readme = "README.md"
 version = "1.0.4"
 requires-python = ">=3.9"
 dependencies = [
@@ -26,6 +26,7 @@ full = ["pytest"]
 docs = [
     "mkdocs>=1.5",
     "mkdocs-material>=9.2.7",
+    "mkdocs-include-markdown-plugin>=6.0",
     "mkdocstrings[python]>=0.24",
 ]
 
